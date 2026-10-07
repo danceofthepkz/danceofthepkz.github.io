@@ -1,0 +1,180 @@
+{
+  "site": {
+    "url": "https://danceofthepkz.github.io/",
+    "title": "Kangze (Steven) Peng",
+    "description": "Kangze (Steven) Peng studies decision-making under uncertainty in brains, people, and language models. Computer Science & Cognitive Science at Swarthmore College.",
+    "lastUpdated": "October 2026",
+    "footerNote": "This site does not track you."
+  },
+  "nav": [
+    {
+      "label": "Research",
+      "href": "#research"
+    },
+    {
+      "label": "Publications",
+      "href": "#publications"
+    },
+    {
+      "label": "Portfolio",
+      "href": "portfolio/"
+    }
+  ],
+  "profile": {
+    "name": "Kangze (Steven) Peng",
+    "me": "Kangze Peng",
+    "altName": "彭康泽",
+    "affiliation": "Computer Science & Cognitive Science, Swarthmore College",
+    "tagline": "I study how decisions get made under uncertainty: in brains, in people, and in the language models we now use to simulate them.",
+    "photo": "assets/photo.jpg",
+    "photoAlt": "Kangze Peng smiling on a grassy hillside above a lake",
+    "links": [
+      {
+        "label": "Email",
+        "href": "mailto:kpeng1@swarthmore.edu"
+      },
+      {
+        "label": "Scholar",
+        "href": "https://scholar.google.com/citations?user=DLZumXEAAAAJ"
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/danceofthepkz"
+      },
+      {
+        "label": "LinkedIn",
+        "href": "https://www.linkedin.com/in/kangze-peng"
+      }
+    ]
+  },
+  "research": {
+    "id": "research",
+    "heading": "Research",
+    "paragraphs": [
+      "I am a senior at Swarthmore College studying computer science and cognitive science. I am interested in decision-making under uncertainty at several scales: how brains learn to sort what they hear, how people weigh risks when they use AI, and how faithfully language models reproduce the behavior of whole populations.",
+      "I work with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/) on human-centered AI safety. My senior thesis, advised by Prof. Joshua Goldwyn, builds reinforcement-learning models of auditory decision-making using data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn."
+    ],
+    "directions": [
+      {
+        "title": "Auditing simulated people",
+        "text": "Measuring where LLM social simulators drift from real populations, and which errors no amount of fitting can fix."
+      },
+      {
+        "title": "Seeing AI risks clearly",
+        "text": "Systems that help people reason through scams, privacy, and security tradeoffs when they use or build with AI."
+      },
+      {
+        "title": "How brains learn to decide",
+        "text": "Computational models of how learners form categories from sound."
+      }
+    ]
+  },
+  "publications": {
+    "id": "publications",
+    "heading": "Publications & projects",
+    "items": [
+      {
+        "title": "ScamPilot: Simulating Conversations with LLMs to Protect Against Online Scams",
+        "authors": [
+          "Owen M. Hoffman",
+          "Kangze Peng",
+          "Sajid Kamal",
+          "Zehua You",
+          "Sukrit Venkatagiri"
+        ],
+        "venue": "CHI 2026, Barcelona",
+        "description": "",
+        "image": null,
+        "links": [
+          {
+            "label": "DOI",
+            "href": "https://doi.org/10.1145/3772318.3791313"
+          }
+        ]
+      },
+      {
+        "title": "Social simulation audit",
+        "authors": [
+          "Kangze Peng"
+        ],
+        "venue": "In progress",
+        "description": "An information-theoretic audit of LLM social simulators: where a simulated population drifts from real people, and the part of that error no amount of fitting can remove.",
+        "image": null,
+        "links": [
+          {
+            "label": "Project page",
+            "href": "https://danceofthepkz.github.io/intervention-response-audit/"
+          }
+        ]
+      },
+      {
+        "title": "Reinforcement-learning models of auditory categorization learning",
+        "authors": [
+          "Kangze Peng"
+        ],
+        "venue": "Senior thesis, Swarthmore College, 2027",
+        "description": "Models of how learners form categories from sound, fit to behavioral data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn, with an interactive article walking through the analysis.",
+        "image": null,
+        "links": [
+          {
+            "label": "Interactive article",
+            "href": "https://danceofthepkz.github.io/behavioral-modeling-thesis/auditory_categorization_learning/"
+          }
+        ]
+      },
+      {
+        "title": "PromptSafe: multi-agent deliberation for end-user developers",
+        "authors": [
+          "Kangze Peng",
+          "Yiming Wu",
+          "Sauvik Das",
+          "Sukrit Venkatagiri"
+        ],
+        "venue": "In progress",
+        "description": "Voice agents that speak for privacy, security, misuse, and the user's own interests help people who build apps with AI weigh the tradeoffs in what they are making.",
+        "image": null,
+        "links": []
+      },
+      {
+        "title": "Kickapoo to English machine translation",
+        "authors": [
+          "Kangze Peng",
+          "Yike Li",
+          "Jonathan Washington"
+        ],
+        "venue": "Open source, Apertium",
+        "description": "A rule-based translation pair for Kickapoo, a low-resource Algonquian language.",
+        "image": null,
+        "links": [
+          {
+            "label": "Code",
+            "href": "https://github.com/apertium/apertium-kic"
+          }
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "id": "contact",
+    "heading": "Contact",
+    "lines": [
+      {
+        "text": "Email is the best way to reach me: [kpeng1@swarthmore.edu](mailto:kpeng1@swarthmore.edu)"
+      },
+      {
+        "id": "portfolio",
+        "text": "Portfolio: [still in development](portfolio/)"
+      }
+    ]
+  },
+  "pages": [
+    {
+      "path": "portfolio",
+      "heading": "Portfolio",
+      "paragraphs": [
+        "This page is still in development. Check back soon.",
+        "[← Back to the home page](../)"
+      ]
+    }
+  ]
+}
