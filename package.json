@@ -1,0 +1,12 @@
+{
+  "name": "danceofthepkz.github.io",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "icons": "node scripts/make-icons.mjs",
+    "og": "node scripts/make-og.mjs"
+  }
+}
