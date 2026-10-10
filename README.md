@@ -72,6 +72,7 @@ src/index.template.html    <head> + page skeleton ({{slots}} filled by the build
 src/styles.css             theme tokens, layout, typography, mobile
 src/scene.js               pixel-art canvas scene
 src/main.js                boot, theme toggle, pause-when-hidden
+src/skylab.js              "Play with the sky" easter egg under the footer (loaded only when opened)
 src/fonts/                 self-hosted Spectral (SIL OFL)
 src/assets/                favicon, OG image, your images
 scripts/build.mjs          JSON + template → dist/

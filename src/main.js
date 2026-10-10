@@ -19,5 +19,16 @@ const start = () => {
   });
 };
 
+// Sky lab easter egg: fetch its code only the first time it is opened.
+const lab = document.getElementById('sky-lab');
+if (lab) {
+  const version = new URL(import.meta.url).search;
+  lab.addEventListener('toggle', () => {
+    if (!lab.open || lab.dataset.ready) return;
+    lab.dataset.ready = '1';
+    import('./skylab.js' + version).then((m) => m.mountSkyLab(lab));
+  });
+}
+
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
 else start();

@@ -8,7 +8,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'src');
 const OUT = join(ROOT, 'dist');
-const STATIC = ['styles.css', 'scene.js', 'main.js', 'fonts', 'assets'];
+const STATIC = ['styles.css', 'scene.js', 'main.js', 'skylab.js', 'fonts', 'assets'];
 
 // ---------- text helpers ----------
 const TODO_RE = /\[TODO:[^\]]*\]/g;
@@ -119,12 +119,34 @@ export function build({ strict = false, quiet = false } = {}) {
     .update(readFileSync(join(SRC, 'styles.css')))
     .update(readFileSync(join(SRC, 'scene.js')))
     .update(readFileSync(join(SRC, 'main.js')))
+    .update(readFileSync(join(SRC, 'skylab.js')))
     .digest('hex').slice(0, 8);
 
   const tpl = readFileSync(join(SRC, 'index.template.html'), 'utf8');
 
   // base: '' for the home page, '../' for pages one folder down (e.g. portfolio/).
-  function renderPage({ base = '', path = '', title = site.title, body }) {
+  // Easter egg at the bottom of the home page; its script loads only when opened (main.js).
+  const SKYLAB = `<details class="skylab" id="sky-lab">
+<summary>Play with the sky</summary>
+<div class="skylab-body">
+<div class="skylab-modes" role="group" aria-label="Sky model">
+<button type="button" data-mode="0" aria-pressed="true">This site</button>
+<button type="button" data-mode="1" aria-pressed="false">Atmosphere</button>
+<button type="button" data-mode="2" aria-pressed="false">Warped clouds</button>
+<button type="button" data-mode="3" aria-pressed="false">Aurora</button>
+</div>
+<canvas class="skylab-canvas" role="img" aria-label="Pixel sky"></canvas>
+<p class="skylab-note" data-note aria-live="polite"></p>
+<div class="skylab-controls">
+<label>Sun height <input type="range" name="sun" min="-20" max="60" step="1" value="4"> <output data-sun-out>4°</output></label>
+<label>Colour levels <input type="range" name="levels" min="2" max="12" step="1" value="8"> <output data-levels-out>8</output></label>
+<label><input type="checkbox" name="dither" checked> Dither</label>
+</div>
+<p class="skylab-hint">Drag across the sky to move the sun.</p>
+</div>
+</details>`;
+
+  function renderPage({ base = '', path = '', title = site.title, body, extra = '' }) {
     // Relative links in shared parts (nav) must point back up from subpages.
     const href = (h) => (base && !/^([a-z]+:|\/)/i.test(h) ? base + h : h);
     const slots = {
@@ -138,6 +160,7 @@ export function build({ strict = false, quiet = false } = {}) {
       version,
       nav: data.nav.map((n) => `<a href="${esc(href(n.href))}"${path && n.href === path ? ' aria-current="page"' : ''}>${inline(n.label)}</a>`).join('\n'),
       body,
+      extra,
       lastUpdated: inline(site.lastUpdated),
       footerNote: inline(site.footerNote)
     };
@@ -153,7 +176,8 @@ export function build({ strict = false, quiet = false } = {}) {
       renderResearch(data.research),
       renderPublications(data.publications, profile.me),
       renderContact(data.contact)
-    ].join('\n\n')
+    ].join('\n\n'),
+    extra: SKYLAB
   });
 
   const pages = (data.pages || []).map((pg) => ({
