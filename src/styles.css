@@ -37,10 +37,10 @@ html{scroll-padding-top:5.5rem}
 .nav a:hover{color:var(--link)}
 .nav a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:6px}
 
-.paper{position:relative;isolation:isolate;max-width:46rem;margin-top:clamp(11rem,26vw,20rem);color:var(--ink)}
-.haze{position:absolute;z-index:-1;top:-12rem;bottom:-14rem;left:calc(-1 * clamp(1rem,6vw,6rem));right:-16rem;background-color:var(--haze);transition:background-color 1.2s ease;
-  -webkit-mask-image:linear-gradient(to right,#000 0%,#000 calc(100% - 22rem),transparent 100%),linear-gradient(to bottom,transparent 0,#000 14rem,#000 calc(100% - 16rem),transparent 100%);-webkit-mask-composite:source-in;
-  mask-image:linear-gradient(to right,#000 0%,#000 calc(100% - 22rem),transparent 100%),linear-gradient(to bottom,transparent 0,#000 14rem,#000 calc(100% - 16rem),transparent 100%);mask-composite:intersect}
+.paper{position:relative;isolation:isolate;max-width:clamp(46rem,58vw,64rem);margin-top:clamp(11rem,26vw,20rem);color:var(--ink)}
+.haze{position:absolute;z-index:-1;top:-12rem;bottom:-14rem;left:calc(-1 * clamp(1rem,6vw,6rem));right:-8rem;background-color:var(--haze);transition:background-color 1.2s ease;
+  -webkit-mask-image:linear-gradient(to right,#000 0%,#000 calc(100% - 8rem),transparent 100%),linear-gradient(to bottom,transparent 0,#000 14rem,#000 calc(100% - 16rem),transparent 100%);-webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,#000 0%,#000 calc(100% - 8rem),transparent 100%),linear-gradient(to bottom,transparent 0,#000 14rem,#000 calc(100% - 16rem),transparent 100%);mask-composite:intersect}
 
 /* ---------- Name card ---------- */
 /* Round portrait above the name. The home page starts higher so the name stays where it was. */

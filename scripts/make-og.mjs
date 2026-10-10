@@ -1,10 +1,11 @@
-// Renders the real scene (src/scene.js) headlessly into src/assets/og-image.png (1200x630).
+// Renders the real scene (src/scene.js) headlessly into src/assets/og-image.png (1600x840).
 // A tiny fake 2D canvas implements just the calls the scene uses.
 // `node scripts/make-og.mjs [night|day]`
 import { writeFileSync } from 'node:fs';
 import { encodePNG, upscale } from './png.mjs';
 
-const W = 1200, H = 630;
+const W = +(process.env.W || 1600), H = +(process.env.H || 840);
+const OUT = process.env.OUT || new URL('../src/assets/og-image.png', import.meta.url).pathname;
 
 function parseColor(s) {
   if (s[0] === '#') return [parseInt(s.slice(1, 3), 16), parseInt(s.slice(3, 5), 16), parseInt(s.slice(5, 7), 16), 1];
@@ -22,14 +23,16 @@ class FakeCanvas {
 }
 
 class FakeCtx {
-  constructor(canvas) { this.canvas = canvas; this.globalAlpha = 1; this._c = [0, 0, 0, 1]; this.imageSmoothingEnabled = false; }
+  constructor(canvas) { this.canvas = canvas; this.globalAlpha = 1; this._c = [0, 0, 0, 1]; this.imageSmoothingEnabled = false; this.k = 1; }
+  setTransform(a) { this.k = a; }
   set fillStyle(s) { this._c = parseColor(s); }
   get fillStyle() { return this._c; }
   fillRect(x, y, w, h) {
     const cv = this.canvas, buf = cv.ensure();
     const [r, g, b, a0] = this._c, a = a0 * this.globalAlpha;
-    const x0 = Math.max(0, Math.round(x)), y0 = Math.max(0, Math.round(y));
-    const x1 = Math.min(cv.width, Math.round(x + w)), y1 = Math.min(cv.height, Math.round(y + h));
+    const k = this.k;
+    const x0 = Math.max(0, Math.round(x * k)), y0 = Math.max(0, Math.round(y * k));
+    const x1 = Math.min(cv.width, Math.round((x + w) * k)), y1 = Math.min(cv.height, Math.round((y + h) * k));
     for (let yy = y0; yy < y1; yy++) for (let xx = x0; xx < x1; xx++) {
       const i = (yy * cv.width + xx) * 4;
       buf[i] = r * a + buf[i] * (1 - a);
@@ -40,7 +43,14 @@ class FakeCtx {
   }
   createImageData(w, h) { return { width: w, height: h, data: new Uint8ClampedArray(w * h * 4) }; }
   putImageData(img) { this.canvas.ensure().set(img.data); }
-  drawImage(src) { this.canvas.ensure().set(src.ensure()); }
+  drawImage(src) {
+    const dst = this.canvas, d = dst.ensure(), sb = src.ensure(), k = this.k;
+    for (let y = 0; y < dst.height; y++) for (let x = 0; x < dst.width; x++) {
+      const si = (Math.min(src.height - 1, Math.floor(y / k)) * src.width + Math.min(src.width - 1, Math.floor(x / k))) * 4;
+      const di = (y * dst.width + x) * 4;
+      d[di] = sb[si]; d[di + 1] = sb[si + 1]; d[di + 2] = sb[si + 2]; d[di + 3] = 255;
+    }
+  }
 }
 
 const sceneCanvas = new FakeCanvas();
@@ -65,8 +75,6 @@ site.reduce = true; // deterministic: no drifting clouds or streaks
 site.frame(0.016);
 
 const lw = sceneCanvas.width, lh = sceneCanvas.height;
-const k = Math.round(W / lw);
-if (lw * k !== W || lh * k !== H) throw new Error(`Scene buffer ${lw}x${lh} does not scale to ${W}x${H}`);
-const out = new URL('../src/assets/og-image.png', import.meta.url).pathname;
-writeFileSync(out, encodePNG(W, H, upscale(lw, lh, sceneCanvas.buf, k)));
-console.log(`Wrote og-image.png (${theme}, ${lw}x${lh} at ${k}x)`);
+const k = Math.max(1, Math.round(W / lw));
+writeFileSync(OUT, encodePNG(lw * k, lh * k, upscale(lw, lh, sceneCanvas.buf, k)));
+console.log(`Wrote ${OUT.split('/').pop()} (${theme}, ${lw * k}x${lh * k})`);

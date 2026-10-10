@@ -61,7 +61,7 @@ Useful query parameters: `?theme=day|night`, `?companion=light|bird|traveler`.
 
 ```bash
 npm run icons      # regenerate favicon.svg / favicon-32.png / apple-touch-icon.png from the grid in scripts/make-icons.mjs
-npm run og         # re-render the social preview (src/assets/og-image.png) from the actual scene
+npm run og         # re-render the social preview (src/assets/og-image.png, 1600x840) from the actual scene
 ```
 
 ## Layout
