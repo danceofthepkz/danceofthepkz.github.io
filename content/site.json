@@ -65,7 +65,7 @@
       },
       {
         "title": "How brains learn to decide",
-        "text": "Computational models of how learners form categories from sound."
+        "text": "Reinforcement-learning models that separate what an animal learns about sounds from its pull toward repeating recent choices."
       }
     ]
   },
@@ -84,13 +84,15 @@
         ],
         "venue": "CHI 2026, Barcelona",
         "description": "",
-        "image": null,
+        "image": "assets/pubs/scampilot-thumb.jpg",
         "links": [
           {
             "label": "DOI",
             "href": "https://doi.org/10.1145/3772318.3791313"
           }
-        ]
+        ],
+        "imageFull": "assets/pubs/scampilot.png",
+        "imageAlt": "ScamPilot interface: a simulated scam chat between Mark and his grandmother Jane, a quiz question about the scammer's tactic, and a box for writing advice to Jane."
       },
       {
         "title": "Social simulation audit",
@@ -113,14 +115,16 @@
           "Kangze Peng"
         ],
         "venue": "Senior thesis, Swarthmore College, 2027",
-        "description": "Models of how learners form categories from sound, fit to behavioral data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn, with an interactive article walking through the analysis.",
-        "image": null,
+        "description": "Ten reinforcement-learning models built from interchangeable parts and fit to mouse choices from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn, to ask why a learner drifts toward one side: stimulus–action learning, reward-driven drift, or plain repetition. An interactive article walks through the analysis.",
+        "image": "assets/pubs/thesis-models-thumb.jpg",
         "links": [
           {
             "label": "Interactive article",
             "href": "https://danceofthepkz.github.io/behavioral-modeling-thesis/auditory_categorization_learning/"
           }
-        ]
+        ],
+        "imageFull": "assets/pubs/thesis-models.jpg",
+        "imageAlt": "Real versus simulated learning curves for one mouse (GS027) under ten reinforcement-learning models, with each model's BIC difference from the best fit."
       },
       {
         "title": "PromptSafe: multi-agent deliberation for end-user developers",
