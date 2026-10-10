@@ -219,7 +219,12 @@ export class Site {
     const s = Math.max(2, Math.round(W / 380));
     const lw = Math.ceil(W / s), lh = Math.ceil(H / s);
     this.lw = lw; this.lh = lh;
-    this.canvas.width = lw; this.canvas.height = lh;
+    // Wide screens: the canvas has k-times finer pixels. Everything is drawn through a k-scale
+    // transform (so the sky/clouds/hills look unchanged) except the landmarks, which use the fine grid.
+    const narrow = W <= 768;
+    const k = narrow ? 1 : 2;
+    this.k = k;
+    this.canvas.width = lw * k; this.canvas.height = lh * k;
     this.ctx.imageSmoothingEnabled = false;
     const base = Math.min(lh, lw * 0.62);
     this.base = base;
@@ -242,19 +247,26 @@ export class Site {
     };
     this.mats = {
       pearl: { a: this.hex('#8F87AC'), b: this.hex('#D27A9C') },
-      parrish: { a: this.hex('#ADA6BA'), b: this.hex('#5F5878') },
+      parrish: { a: this.hex('#B4ADC2'), b: this.hex('#58516F'), c: this.hex('#3A3450'), d: this.hex('#E6E0EC') },
       scope: { a: this.hex('#9089AD'), b: this.hex('#F3F1F6') }
     };
 
     this.far = this.ridge(R, lw, base * 0.24, base * 0.18, 56, 16);
     this.fg = this.ridge(R, lw, base * 0.06, base * 0.07, 40, 10);
 
-    const u = Math.max(0.6, (base / 225) * 0.85);
+    // Landmarks are drawn at ~60% of the original prototype size and sit low in the bottom-right corner.
+    // u = landmark unit in fine pixels. Phones keep the original size and placement;
+    // wide screens get smaller landmarks low in the bottom-right corner, at 2x detail.
+    const u = narrow ? Math.max(0.6, (base / 225) * 0.85) : Math.max(0.45, (base / 225) * 0.85 * 0.6) * k;
     this.u = u;
-    const specs = [
+    const specs = narrow ? [
       { f: 0.62, type: 'pearl', top: 0.3, bot: 7, float: false },
       { f: 0.785, type: 'parrish', top: 0.24, bot: 9, float: false },
       { f: 0.945, type: 'scope', top: 0.52, bot: 0, float: true }
+    ] : [
+      { f: 0.72, type: 'pearl', top: 0.22, bot: 5, float: false },
+      { f: 0.865, type: 'parrish', top: 0.18, bot: 6, float: false },
+      { f: 0.958, type: 'scope', top: 0.4, bot: 0, float: true }
     ];
     this.marks = specs.map((sp) => {
       const ang = sp.type === 'scope' ? this.scopeAngle() : 0;
@@ -263,9 +275,9 @@ export class Site {
       for (const r of lm.runs) if (r[1] <= 1) { fx0 = Math.min(fx0, r[0]); fx1 = Math.max(fx1, r[0] + r[2] - 1); }
       const footHalf = Math.max(-fx0, fx1);
       const halfTop = footHalf + 3;
-      const depth = sp.float ? Math.max(14, Math.round(base * 0.13)) : Math.round(base * sp.top) + 4;
+      const depth = (sp.float ? Math.max(14, Math.round(base * 0.13)) : Math.round(base * sp.top) + 4) * k;
       const rock = this.buildRock(R, halfTop, halfTop + Math.round(sp.bot * u), depth, sp.float, footHalf);
-      return { type: sp.type, ang: ang, cx: Math.round(lw * sp.f), lm: lm, rock: rock, float: sp.float, topY: Math.round(lh - base * sp.top) };
+      return { type: sp.type, ang: ang, cx: Math.round(lw * k * sp.f), lm: lm, rock: rock, float: sp.float, topY: Math.round((lh - base * sp.top) * k) };
     });
 
     this.clouds = [];
@@ -382,35 +394,57 @@ export class Site {
       glint(3, 27);
       glint(2.5, 72.5);
     } else if (type === 'parrish') {
-      rect(-33, 0, 33, 15);
+      // Parrish Hall (Swarthmore): long Second Empire stone building — mansard roofs with
+      // dormers, two end pavilions, a central pavilion with a portico, clock and cupola.
+      // Units: x from the centre line, y up from the ground.
+      const sym = (x0, y0, x1, y1) => { rect(x0, y0, x1, y1); rect(-x1, y0, -x0, y1); };
+      const symPut = (x, y) => { put(x * u, y * u); put(-x * u, y * u); };
+      const win = (x, y0, y1) => { mat = 'c'; rect(x, y0, x, y1); };
+      const floors = [[2, 4], [8, 10], [14, 16]];
+      // main wings
+      mat = 'a'; rect(-31, 0, 31, 20);
+      for (const [y0, y1] of floors) for (let x = 11; x <= 29; x += 3) { win(x, y0, y1); win(-x, y0, y1); }
+      mat = 'd'; rect(-31, 6, 31, 6); rect(-32, 21, 32, 21);
       mat = 'b';
-      for (let i = 0; i < 5; i++) rect(-33 + i, 16 + i, 33 - i, 16 + i);
-      for (let x = -24; x <= 24; x += 6) { if (Math.abs(x) < 9) continue; rect(x, 19, x + 1, 22); }
-      const pav = (x0, x1, wall, roof) => {
-        mat = 'a';
-        rect(x0, 0, x1, wall);
-        mat = 'b';
-        for (let i = 0; i < roof; i++) rect(x0 + (i < 2 ? 0 : 1), wall + 1 + i, x1 - (i < 2 ? 0 : 1), wall + 1 + i);
-        rect(x0 + 1, wall + roof + 1, x0 + 1, wall + roof + 2);
-        rect(x1 - 1, wall + roof + 1, x1 - 1, wall + roof + 2);
-      };
-      pav(-38, -28, 17, 8);
-      pav(28, 38, 17, 8);
-      pav(-7, 7, 19, 9);
-      mat = 'a';
-      rect(-3, 29, 3, 33);
-      rect(-2, 34, 2, 37);
-      mat = 'b';
-      ball(0, 39, 2);
-      rect(0, 41, 0, 45);
-      mat = 'a';
-      for (let y = 3; y <= 12; y += 4) {
-        for (let x = -36; x <= 36; x += 3) {
-          if (Math.abs(x) <= 8 && y > 11) continue;
-          if (((x * 7 + y * 13) % 5 + 5) % 5 < 2) light(x, y, 'warm');
-        }
+      [0, 0, 1, 1, 2, 3].forEach((ins, i) => rect(-31 + ins, 22 + i, 31 - ins, 22 + i));
+      for (const x of [14, 20, 26]) {
+        mat = 'a'; sym(x - 1, 22, x + 1, 25); symPut(x, 26);
+        mat = 'c'; sym(x, 23, x, 24);
       }
-      light(0, 31, 'clock');
+      mat = 'd'; rect(-28, 28, 28, 28);
+      mat = 'a'; sym(17, 28, 18, 31);
+      // end pavilions
+      mat = 'a'; sym(31, 0, 40, 23);
+      for (const [y0, y1] of floors.concat([[19, 21]])) for (const x of [33, 36, 39]) { win(x, y0, y1); win(-x, y0, y1); }
+      mat = 'd'; sym(30, 24, 41, 24);
+      mat = 'b';
+      [0, 0, 1, 1, 2, 2, 3, 4].forEach((ins, i) => sym(31 + ins, 25 + i, 40 - ins, 25 + i));
+      mat = 'a'; sym(34, 26, 37, 29); symPut(35, 30); symPut(36, 30);
+      mat = 'c'; sym(35, 27, 36, 28);
+      mat = 'd'; sym(35, 33, 36, 33); symPut(32, 33); symPut(39, 33); symPut(32, 34); symPut(39, 34);
+      // central pavilion + portico
+      mat = 'a'; rect(-8, 0, 8, 26);
+      for (const [y0, y1] of floors.concat([[20, 22]])) { win(-6, y0, y1); win(6, y0, y1); }
+      mat = 'c'; rect(-2, 0, 2, 5); rect(-1, 6, 1, 6);
+      mat = 'd'; rect(-4, 0, -4, 7); rect(4, 0, 4, 7); rect(-5, 8, 5, 8); rect(-9, 27, 9, 27);
+      mat = 'b';
+      [0, 0, 0, 1, 1, 2, 2, 3, 4, 5].forEach((ins, i) => rect(-8 + ins, 28 + i, 8 - ins, 28 + i));
+      mat = 'd'; ball(0, 32, 1.6);
+      // cupola: dome first, drum drawn over its lower half
+      mat = 'b'; ball(0, 44, 2.6);
+      mat = 'a'; rect(-2, 39, 2, 43);
+      mat = 'c'; rect(-1, 40, -1, 42); rect(1, 40, 1, 42);
+      mat = 'd'; rect(-3, 38, 3, 38); rect(0, 47, 0, 51);
+      mat = 'a';
+      // lit windows at night (deterministic subset)
+      for (const [y0] of floors) {
+        for (let x = 11; x <= 29; x += 3) {
+          if (((x * 7 + y0 * 13) % 5 + 5) % 5 < 2) light(x, y0 + 1, 'warm');
+          if (((x * 11 + y0 * 5) % 5 + 5) % 5 < 2) light(-x, y0 + 1, 'warm');
+        }
+        for (const x of [33, 36, 39]) if ((x + y0) % 3 === 0) { light(x, y0 + 1, 'warm'); light(-x, y0 + 2, 'warm'); }
+      }
+      light(0, 32, 'clock');
     } else {
       seg(-7, 0, -2, 12, 2);
       seg(6, 0, 1, 12, 2);
@@ -532,6 +566,8 @@ export class Site {
     const col = (name) => this.css(mixP(name));
     const la = this.ease((t - 0.45) / 0.45) * nd;
 
+    const k = this.k || 1;
+    ctx.setTransform(k, 0, 0, k, 0, 0);
     ctx.drawImage(this.sky, 0, 0);
 
     if (t > 0.02 && nd > 0.01) {
@@ -600,13 +636,17 @@ export class Site {
     const rightLit = dd > 0.5;
     const sang = this.scopeAngle();
 
+    // Landmarks + their rocks are drawn on the fine grid (k x the scene's pixels).
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    // Keep a little material detail visible at dusk/night instead of a flat silhouette.
+    const md = 0.28 + 0.72 * dd;
     for (const m of this.marks) {
       if (m.type === 'scope' && m.ang !== sang) { m.ang = sang; m.lm = this.buildLandmark('scope', this.u, sang); }
       const K = m.rock, L = m.lm, cx = m.cx;
-      const bob = m.float && !this.reduce ? Math.round(Math.sin(this.time * 0.6) * 1.2) : 0;
-      const top = Math.round(m.topY + oP) + bob;
+      const bob = m.float && !this.reduce ? Math.round(Math.sin(this.time * 0.6) * 1.2) * k : 0;
+      const top = Math.round(m.topY + oP * k) + bob;
       const n = K.rows.length, last = K.rows[n - 1];
-      const tail = m.float ? 0 : Math.max(0, lh - (top + n));
+      const tail = m.float ? 0 : Math.max(0, lh * k - (top + n));
       const litX = (r) => rightLit ? r[1] : r[0];
       const litIn = rightLit ? -1 : 1;
       const shX = (r) => rightLit ? r[0] : r[1] - 1;
@@ -644,9 +684,10 @@ export class Site {
 
       const gy = top - 1;
       const M = this.mats[m.type];
-      const ca = this.css(this.mixc(rockN, M.a, dd)), cb = this.css(this.mixc(rockN, M.b, dd));
+      const mc = {};
+      for (const key in M) mc[key] = this.css(this.mixc(rockN, M[key], md));
       for (const r of L.runs) {
-        ctx.fillStyle = r[3] === 'b' ? cb : ca;
+        ctx.fillStyle = mc[r[3]] || mc.a;
         ctx.fillRect(cx + r[0], gy - r[1], r[2], 1);
       }
       ctx.fillStyle = rim;
@@ -690,6 +731,8 @@ export class Site {
         }
       }
     }
+
+    ctx.setTransform(k, 0, 0, k, 0, 0);
 
     const oG = -p * base * 0.12;
     ctx.fillStyle = col('ground');
