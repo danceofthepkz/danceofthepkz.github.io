@@ -38,10 +38,12 @@ const linkRow = (links) => (links && links.length)
   ? `<div class="link-row">${links.map(link).join('')}</div>`
   : '';
 
-function thumb(kind, src, alt, placeholder) {
+function thumb(kind, src, alt, placeholder, full) {
   // The profile photo is above the fold, so only figures load lazily.
   const lazy = kind === 'photo' ? '' : ' loading="lazy"';
   const inner = src ? `<img src="${esc(src)}" alt="${esc(alt || '')}"${lazy}>` : `<span>${placeholder}</span>`;
+  // A figure with a full-size version links to it so small UI screenshots can be read.
+  if (src && full) return `<a class="thumb thumb--${kind} thumb--link" href="${esc(full)}" title="Open full-size figure">${inner}</a>`;
   return `<div class="thumb thumb--${kind}"${src && alt ? '' : ' aria-hidden="true"'}>${inner}</div>`;
 }
 
@@ -76,7 +78,7 @@ ${dirs ? `<div class="directions">\n${dirs}\n</div>` : ''}
 function renderPublications(pubs, me) {
   const author = (a) => (a === me ? `<b>${inline(a)}</b>` : inline(a));
   const items = pubs.items.map((it) => `<li class="pub">
-${thumb('fig', it.image, it.imageAlt, 'fig.')}
+${thumb('fig', it.image, it.imageAlt, 'fig.', it.imageFull)}
 <div class="pub-body">
 <h3 class="pub-title">${inline(it.title)}</h3>
 <p class="pub-authors">${(it.authors || []).map(author).join(', ')}</p>
