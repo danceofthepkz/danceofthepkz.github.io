@@ -52,7 +52,7 @@
     "heading": "Research",
     "paragraphs": [
       "I am a senior at Swarthmore College studying computer science and cognitive science. I am interested in decision-making under uncertainty at several scales: how brains learn to sort what they hear, how people weigh risks when they use AI, and how faithfully language models reproduce the behavior of whole populations.",
-      "I work with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/) on human-centered AI safety. My senior thesis, advised by Prof. Joshua Goldwyn, builds reinforcement-learning models of auditory decision-making using data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn."
+      "I work with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/) on human-centered AI safety. My senior thesis, advised by [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn), builds reinforcement-learning models of auditory decision-making using data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn."
     ],
     "directions": [
       {
@@ -112,7 +112,8 @@
       {
         "title": "Reinforcement-learning models of auditory categorization learning",
         "authors": [
-          "Kangze Peng"
+          "Kangze Peng",
+          "Joshua Goldwyn"
         ],
         "venue": "Senior thesis, Swarthmore College, 2027",
         "description": "Ten reinforcement-learning models built from interchangeable parts and fit to mouse choices from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn, to ask why a learner drifts toward one side: stimulus–action learning, reward-driven drift, or plain repetition. An interactive article walks through the analysis.",
