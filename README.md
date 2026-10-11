@@ -35,7 +35,7 @@ Add an object to `publications.items` (order on the page = order in the file):
 
 - Your name is bolded automatically when it matches `profile.me` exactly.
 - `image`: put a file in `src/assets/` and write `"assets/my-figure.png"` (with an `imageAlt`), or leave `null` for the checkered placeholder.
-- `imageFull` (optional): a larger version; the thumbnail then links to it (handy for UI screenshots).
+- `imageFit` (optional): `"contain"` shows the whole image on a white mat (for portrait or square figures) instead of cropping it to the 16:9 frame.
 - A link whose `href` is a `[TODO: …]` renders as greyed text with a TODO marker instead of a dead link.
 
 ### Extra pages

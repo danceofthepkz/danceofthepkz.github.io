@@ -91,7 +91,6 @@
             "href": "https://doi.org/10.1145/3772318.3791313"
           }
         ],
-        "imageFull": "assets/pubs/scampilot.png",
         "imageAlt": "ScamPilot interface: a simulated scam chat between Mark and his grandmother Jane, a quiz question about the scammer's tactic, and a box for writing advice to Jane."
       },
       {
@@ -101,13 +100,14 @@
         ],
         "venue": "In progress",
         "description": "An information-theoretic audit of LLM social simulators: where a simulated population drifts from real people, and the part of that error no amount of fitting can remove.",
-        "image": null,
+        "image": "assets/pubs/audit-thumb.png",
         "links": [
           {
             "label": "Project page",
             "href": "https://danceofthepkz.github.io/intervention-response-audit/"
           }
-        ]
+        ],
+        "imageAlt": "Illustration of two people talking on a campus path, one holding a phone."
       },
       {
         "title": "Reinforcement-learning models of auditory categorization learning",
@@ -123,7 +123,6 @@
             "href": "https://danceofthepkz.github.io/behavioral-modeling-thesis/auditory_categorization_learning/"
           }
         ],
-        "imageFull": "assets/pubs/thesis-models.jpg",
         "imageAlt": "Real versus simulated learning curves for one mouse (GS027) under ten reinforcement-learning models, with each model's BIC difference from the best fit."
       },
       {
@@ -136,8 +135,10 @@
         ],
         "venue": "In progress",
         "description": "Voice agents that speak for privacy, security, misuse, and the user's own interests help people who build apps with AI weigh the tradeoffs in what they are making.",
-        "image": null,
-        "links": []
+        "image": "assets/pubs/promptsafe-thumb.png",
+        "links": [],
+        "imageFit": "contain",
+        "imageAlt": "PromptSafe panel: agents for privacy, security, misuse and other viewpoints debate a feature, with a moderator and a \"Clash\" round in progress."
       },
       {
         "title": "Kickapoo to English machine translation",
@@ -148,13 +149,15 @@
         ],
         "venue": "Open source, Apertium",
         "description": "A rule-based translation pair for Kickapoo, a low-resource Algonquian language.",
-        "image": null,
+        "image": "assets/pubs/kickapoo-thumb.png",
         "links": [
           {
             "label": "Code",
             "href": "https://github.com/apertium/apertium-kic"
           }
-        ]
+        ],
+        "imageFit": "contain",
+        "imageAlt": "Apertium logo: letters from different scripts spilling out of a cardboard box."
       }
     ]
   },
