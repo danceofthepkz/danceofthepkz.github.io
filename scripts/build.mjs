@@ -8,7 +8,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = join(ROOT, 'src');
 const OUT = join(ROOT, 'dist');
-const STATIC = ['styles.css', 'scene.js', 'main.js', 'skylab.js', 'fonts', 'assets'];
+const STATIC = ['styles.css', 'scene.js', 'main.js', 'skylab.js', 'assets'];
 
 // ---------- text helpers ----------
 const TODO_RE = /\[TODO:[^\]]*\]/g;

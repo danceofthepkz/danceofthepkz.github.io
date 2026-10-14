@@ -74,7 +74,6 @@ src/styles.css             theme tokens, layout, typography, mobile
 src/scene.js               pixel-art canvas scene
 src/main.js                boot, theme toggle, pause-when-hidden
 src/skylab.js              "Play with the sky" easter egg under the footer (loaded only when opened)
-src/fonts/                 self-hosted Spectral (SIL OFL)
 src/assets/                favicon, OG image, your images
 scripts/build.mjs          JSON + template → dist/
 .github/workflows/pages.yml  build + deploy on push to main
@@ -82,4 +81,4 @@ scripts/build.mjs          JSON + template → dist/
 
 ## Privacy
 
-No analytics, no cookies, no third-party requests: fonts are self-hosted and a Content-Security-Policy restricts everything to this origin. Theme choice is not persisted.
+No analytics, no cookies, no third-party requests: text uses the visitor's system font and a Content-Security-Policy restricts everything to this origin. Theme choice is not persisted.
