@@ -51,8 +51,8 @@
     "id": "research",
     "heading": "Research",
     "paragraphs": [
-      "I am a senior at Swarthmore College studying computer science and cognitive science. I am interested in decision-making under uncertainty at several scales: how brains learn to sort what they hear, how people weigh risks when they use AI, and how faithfully language models reproduce the behavior of whole populations.",
-      "I work with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/) on human-centered AI safety. My senior thesis, advised by [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn), builds reinforcement-learning models of auditory decision-making using data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn."
+      "I am a senior at Swarthmore College majoring in Computer Science and Cognitive Science. My research examines decision-making under uncertainty at three levels: how animals learn to categorize sounds, how people assess risk when using AI systems, and how faithfully large language models reproduce the behavior of human populations.",
+      "I work with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/) on human-centered AI safety. My senior thesis, advised by [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn), develops reinforcement-learning models of auditory decision-making using behavioral data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at the University of Pennsylvania."
     ],
     "directions": [
       {
@@ -64,7 +64,7 @@
         "text": "Systems that help people reason through scams, privacy, and security tradeoffs when they use or build with AI."
       },
       {
-        "title": "How brains learn to decide",
+        "title": "Telling learning from habit",
         "text": "Reinforcement-learning models that separate what an animal learns about sounds from its pull toward repeating recent choices."
       }
     ]
