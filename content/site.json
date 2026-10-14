@@ -56,16 +56,16 @@
     ],
     "directions": [
       {
-        "title": "Auditing simulated people",
-        "text": "Measuring where LLM social simulators drift from real populations, and which errors no amount of fitting can fix."
+        "title": "Auditing LLM social simulation",
+        "text": "Quantifying where LLM-based social simulators diverge from real populations, and which errors persist regardless of model fitting."
       },
       {
-        "title": "Seeing AI risks clearly",
-        "text": "Systems that help people reason through scams, privacy, and security tradeoffs when they use or build with AI."
+        "title": "Human-centered AI safety",
+        "text": "Designing systems that help people reason about scams, privacy, and security trade-offs when using or building with AI."
       },
       {
-        "title": "Telling learning from habit",
-        "text": "Reinforcement-learning models that separate what an animal learns about sounds from its pull toward repeating recent choices."
+        "title": "Computational models of learning",
+        "text": "Reinforcement-learning models that distinguish stimulus learning from reward-independent choice repetition."
       }
     ]
   },
@@ -83,7 +83,7 @@
           "Sukrit Venkatagiri"
         ],
         "venue": "CHI 2026, Barcelona",
-        "description": "",
+        "description": "Simulated scam conversations that teach people to recognize and respond to online scams.",
         "image": "assets/pubs/scampilot-thumb.jpg",
         "links": [
           {
@@ -99,7 +99,7 @@
           "Kangze Peng"
         ],
         "venue": "In progress",
-        "description": "An information-theoretic audit of LLM social simulators: where a simulated population drifts from real people, and the part of that error no amount of fitting can remove.",
+        "description": "An information-theoretic audit of where LLM social simulators diverge from real populations.",
         "image": "assets/pubs/audit-thumb.png",
         "links": [
           {
@@ -116,7 +116,7 @@
           "Joshua Goldwyn"
         ],
         "venue": "Senior thesis, Swarthmore College, 2027",
-        "description": "Ten reinforcement-learning models built from interchangeable parts and fit to mouse choices from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn, to ask why a learner drifts toward one side: stimulus–action learning, reward-driven drift, or plain repetition. An interactive article walks through the analysis.",
+        "description": "Reinforcement-learning models of auditory categorization, fit to mouse behavior from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn.",
         "image": "assets/pubs/thesis-models-thumb.jpg",
         "links": [
           {
@@ -135,7 +135,7 @@
           "Sukrit Venkatagiri"
         ],
         "venue": "In progress",
-        "description": "Voice agents that speak for privacy, security, misuse, and the user's own interests help people who build apps with AI weigh the tradeoffs in what they are making.",
+        "description": "Multi-agent deliberation that helps end-user developers weigh privacy, security, and misuse trade-offs.",
         "image": "assets/pubs/promptsafe-thumb.png",
         "links": [],
         "imageFit": "contain",
