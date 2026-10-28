@@ -63,7 +63,7 @@ ${hero.kicker ? `<p class="kicker">${inline(hero.kicker)}</p>` : ''}
 <h1 class="name" id="hero-name">${inline(p.name)}</h1>
 ${p.altName ? `<p class="name-alt" lang="zh-Hans">${inline(p.altName)}</p>` : ''}
 <p class="affiliation">${inline(p.affiliation)}</p>
-${p.tagline ? `<p class="tagline">${inline(p.tagline)}</p>` : ''}
+${hero.intro && hero.intro.length ? `<div class="hero-intro">\n${paras(hero.intro)}\n</div>` : ''}
 ${linkRow(p.links)}
 </div>
 </div>
@@ -119,9 +119,7 @@ function renderResearch(r) {
 <div class="wrap split">
 <h2 id="${esc(r.id)}-h">${inline(r.heading)}</h2>
 <div>
-<div class="prose">
-${paras(r.paragraphs)}
-</div>
+${r.paragraphs && r.paragraphs.length ? `<div class="prose">\n${paras(r.paragraphs)}\n</div>` : ''}
 ${dirs ? `<div class="directions">\n${dirs}\n</div>` : ''}
 </div>
 </div>
@@ -294,9 +292,9 @@ export function build({ strict = false, quiet = false } = {}) {
     mainClass: 'page-home',
     body: [
       renderHero(data.hero, profile),
+      renderResearch(data.research),
       renderApproach(data.approach, data.work),
       renderWork(data.work, profile.me),
-      renderResearch(data.research),
       ...(data.experience ? [renderExperience(data.experience)] : []),
       renderPublications(data.publications, profile.me),
       renderContact(data.contact)

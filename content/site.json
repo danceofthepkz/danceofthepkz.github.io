@@ -48,10 +48,33 @@
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/kangze-peng"
       }
-    ],
-    "tagline": "I study how decisions get made under uncertainty: in brains, in people, and in the language models we now use to simulate them."
+    ]
   },
-  "hero": {},
+  "hero": {
+    "intro": [
+      "I am a senior at Swarthmore College majoring in Computer Science and Cognitive Science. My research examines decision-making under uncertainty at three levels: how animals learn to categorize sounds, how people assess risk when using AI systems, and how faithfully large language models reproduce the behavior of human populations.",
+      "I work with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/) on human-centered AI safety. My senior thesis, advised by [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn), develops reinforcement-learning models of auditory decision-making using behavioral data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at the University of Pennsylvania."
+    ]
+  },
+  "research": {
+    "id": "research",
+    "heading": "Research",
+    "paragraphs": [],
+    "directions": [
+      {
+        "title": "Auditing LLM social simulation",
+        "text": "Quantifying where LLM-based social simulators diverge from real populations, and which errors persist regardless of model fitting."
+      },
+      {
+        "title": "Human-centered AI safety",
+        "text": "Designing systems that help people reason about scams, privacy, and security trade-offs when using or building with AI."
+      },
+      {
+        "title": "Computational models of learning",
+        "text": "Reinforcement-learning models that distinguish stimulus learning from reward-independent choice repetition."
+      }
+    ]
+  },
   "approach": {
     "id": "approach",
     "items": [
@@ -299,28 +322,6 @@
           }
         ],
         "imageFit": "contain"
-      }
-    ]
-  },
-  "research": {
-    "id": "research",
-    "heading": "Research",
-    "paragraphs": [
-      "I am a senior at Swarthmore College majoring in Computer Science and Cognitive Science. My research examines decision-making under uncertainty at three levels: how animals learn to categorize sounds, how people assess risk when using AI systems, and how faithfully large language models reproduce the behavior of human populations.",
-      "I work with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/) on human-centered AI safety. My senior thesis, advised by [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn), develops reinforcement-learning models of auditory decision-making using behavioral data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at the University of Pennsylvania."
-    ],
-    "directions": [
-      {
-        "title": "Auditing LLM social simulation",
-        "text": "Quantifying where LLM-based social simulators diverge from real populations, and which errors persist regardless of model fitting."
-      },
-      {
-        "title": "Human-centered AI safety",
-        "text": "Designing systems that help people reason about scams, privacy, and security trade-offs when using or building with AI."
-      },
-      {
-        "title": "Computational models of learning",
-        "text": "Reinforcement-learning models that distinguish stimulus learning from reward-independent choice repetition."
       }
     ]
   },
