@@ -51,9 +51,7 @@
     ],
     "tagline": "I study how decisions get made under uncertainty: in brains, in people, and in the language models we now use to simulate them."
   },
-  "hero": {
-    "kicker": "HCI · Computational social science · Swarthmore College"
-  },
+  "hero": {},
   "approach": {
     "id": "approach",
     "items": [
@@ -324,6 +322,20 @@
       {
         "title": "Computational models of learning",
         "text": "Reinforcement-learning models that distinguish stimulus learning from reward-independent choice repetition."
+      }
+    ]
+  },
+  "experience": {
+    "id": "experience",
+    "heading": "Experience",
+    "items": [
+      {
+        "org": "Memories.ai",
+        "href": "https://memories.ai/",
+        "role": "[TODO: role, e.g. Research Intern]",
+        "dates": "[TODO: dates]",
+        "location": "",
+        "text": "[TODO: one sentence on what you built or studied]"
       }
     ]
   },

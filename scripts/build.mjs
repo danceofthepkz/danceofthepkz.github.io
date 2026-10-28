@@ -128,6 +128,24 @@ ${dirs ? `<div class="directions">\n${dirs}\n</div>` : ''}
 </section>`;
 }
 
+function renderExperience(x) {
+  return `<section id="${esc(x.id)}" class="sec" aria-labelledby="${esc(x.id)}-h">
+<div class="wrap split">
+<h2 id="${esc(x.id)}-h">${inline(x.heading)}</h2>
+<ol class="exp">
+${x.items.map((e) => `<li>
+<p class="exp-dates label">${inline(e.dates || '')}</p>
+<div>
+<p class="exp-role">${inline(e.role)}${e.org ? `, ${e.href ? `<a href="${esc(e.href)}">${inline(e.org)}</a>` : inline(e.org)}` : ''}</p>
+${e.location ? `<p class="exp-loc">${inline(e.location)}</p>` : ''}
+${e.text ? `<p class="exp-text">${inline(e.text)}</p>` : ''}
+</div>
+</li>`).join('\n')}
+</ol>
+</div>
+</section>`;
+}
+
 function renderCitations(items, me) {
   return `<ol class="cites">
 ${items.map((c) => `<li>
@@ -278,6 +296,7 @@ export function build({ strict = false, quiet = false } = {}) {
       renderApproach(data.approach, data.work),
       renderWork(data.work, profile.me),
       renderResearch(data.research),
+      ...(data.experience ? [renderExperience(data.experience)] : []),
       renderPublications(data.publications, profile.me),
       renderContact(data.contact)
     ].join('\n\n'),
