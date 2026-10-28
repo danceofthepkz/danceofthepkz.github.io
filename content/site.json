@@ -48,11 +48,11 @@
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/kangze-peng"
       }
-    ]
+    ],
+    "tagline": "I study how decisions get made under uncertainty: in brains, in people, and in the language models we now use to simulate them."
   },
   "hero": {
-    "kicker": "HCI · Computational social science · Swarthmore College",
-    "statement": "I build and interrogate the systems that shape how people decide."
+    "kicker": "HCI · Computational social science · Swarthmore College"
   },
   "approach": {
     "id": "approach",

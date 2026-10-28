@@ -58,15 +58,12 @@ function renderHero(hero, p) {
 <canvas class="scene" data-scene="" aria-hidden="true"></canvas>
 <div class="wrap hero-inner">
 <div class="hero-copy" data-paper="" data-anchor="">
-<p class="kicker">${inline(hero.kicker)}</p>
-<p class="statement">${inline(hero.statement)}</p>
-<div class="id">
 ${thumb('photo', p.photo, p.photoAlt, 'photo')}
-<div>
-<h1 class="name" id="hero-name">${inline(p.name)}${p.altName ? ` <span class="name-alt" lang="zh-Hans">${inline(p.altName)}</span>` : ''}</h1>
+${hero.kicker ? `<p class="kicker">${inline(hero.kicker)}</p>` : ''}
+<h1 class="name" id="hero-name">${inline(p.name)}</h1>
+${p.altName ? `<p class="name-alt" lang="zh-Hans">${inline(p.altName)}</p>` : ''}
 <p class="affiliation">${inline(p.affiliation)}</p>
-</div>
-</div>
+${p.tagline ? `<p class="tagline">${inline(p.tagline)}</p>` : ''}
 ${linkRow(p.links)}
 </div>
 </div>
