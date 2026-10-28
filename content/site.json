@@ -330,12 +330,60 @@
     "heading": "Experience",
     "items": [
       {
+        "role": "Research Assistant",
+        "org": "CMU Human-Computer Interaction Institute",
+        "href": "https://hcii.cmu.edu/",
+        "dates": "Sep 2026 – Present",
+        "location": "",
+        "text": "End-user privacy deliberation with Prof. Sauvik Das and Prof. Sukrit Venkatagiri."
+      },
+      {
+        "role": "Summer Research Intern",
+        "org": "Luminous Ventures",
+        "href": "https://luminousvc.com/",
+        "dates": "May – Aug 2026",
+        "location": "Shanghai, China · formerly Lightspeed China Partners",
+        "text": "Industry research on AI applications and deep tech."
+      },
+      {
+        "role": "Research Assistant",
+        "org": "Swarthmore College",
+        "href": "",
+        "dates": "Jan 2026 – Present",
+        "location": "",
+        "text": "Computational modeling of learning with [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn): reinforcement-learning models of auditory categorization, using data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn."
+      },
+      {
+        "role": "AI Engineering Intern",
         "org": "Memories.ai",
         "href": "https://memories.ai/",
-        "role": "[TODO: role, e.g. Research Intern]",
-        "dates": "[TODO: dates]",
+        "dates": "Sep 2025 – Jan 2026",
+        "location": "Remote",
+        "text": "AI engineering and full-stack development."
+      },
+      {
+        "role": "Research Assistant",
+        "org": "Collective Resilience Lab, Swarthmore College",
+        "href": "",
+        "dates": "Jan 2025 – Present",
         "location": "",
-        "text": "[TODO: one sentence on what you built or studied]"
+        "text": "Human-centered AI safety with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/), including ScamPilot (CHI 2026). Broad/Baltimore Research Fellowship."
+      },
+      {
+        "role": "Summer Research Intern",
+        "org": "Eviction Lab, Princeton University",
+        "href": "https://evictionlab.org/",
+        "dates": "May – Aug 2024",
+        "location": "Robbins Chang Big Data & Social Change Fellow",
+        "text": "Estimated what eviction costs the public with Director Carl Gershenson, and built a React calculator in which every assumption is cited and adjustable."
+      },
+      {
+        "role": "Research Intern",
+        "org": "Key Laboratory of Urban Design and Urban Science, NYU Shanghai",
+        "href": "",
+        "dates": "Jun – Aug 2023",
+        "location": "Shanghai, China",
+        "text": ""
       }
     ]
   },
