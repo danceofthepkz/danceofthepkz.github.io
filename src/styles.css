@@ -80,16 +80,6 @@ main:focus{outline:none}
 .prose p{margin:0;font-size:1.05rem;line-height:1.7;color:var(--ink2)}
 .prose p+p{margin-top:1rem}
 
-/* Build / Study */
-.sec--approach{padding-top:clamp(3rem,7vw,5rem)}
-.approach{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 4rem}
-.approach-item{border-top:2px solid var(--ink);padding-top:1.1rem}
-.approach-item h3{margin:.7rem 0 0;font-size:1.35rem;font-weight:650;letter-spacing:-.015em;line-height:1.25;color:var(--ink)}
-.approach-item p{margin:.6rem 0 0;font-size:1rem;line-height:1.65;color:var(--ink2)}
-.approach-item .label{margin:0}
-.approach-projects{font-size:.95rem}
-.approach-projects span{color:var(--meta)}
-
 /* Selected work */
 .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:3rem 2.5rem}
 .work-text{padding-top:1rem}
@@ -210,7 +200,7 @@ main:focus{outline:none}
   .name{font-size:clamp(2rem,9vw,2.6rem)}
   .hero .kicker{margin-top:1.25rem}
   .thumb--photo{width:5rem;height:5rem}
-  .approach,.work-grid,.split,.case-sec{grid-template-columns:minmax(0,1fr)}
+  .work-grid,.split,.case-sec{grid-template-columns:minmax(0,1fr)}
   .directions{grid-template-columns:minmax(0,1fr)}
   .exp li{grid-template-columns:2rem minmax(0,1fr);column-gap:.9rem}
   .exp-role{padding-top:0}

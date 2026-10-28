@@ -37,7 +37,6 @@ Add an object to `work.items` (order on the page = order in the file):
 - `kinds`: `Build` (a system you made) and/or `Study` (experiments, evaluation, modeling).
 - `imageFit` (optional): `"contain"` shows the whole image on a white mat instead of cropping it.
 - `detail` (optional): adds a case-study page at `/work/<slug>/` with `lead`, `sections` (each `heading` + `paragraphs`, `figure: true` to place the image there), an optional `table`, and `figureCaption`. See the `thesis` entry.
-- To list it under Building/Studying at the top, add its `slug` to `approach.items[].projects`.
 
 ### Add a position (Experience)
 

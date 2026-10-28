@@ -75,30 +75,6 @@
       }
     ]
   },
-  "approach": {
-    "id": "approach",
-    "items": [
-      {
-        "label": "Building systems",
-        "title": "Turning research ideas into systems people use.",
-        "text": "Interactive tools that put people in front of a hard decision, from rehearsing a scam conversation to weighing the risks of an app they are building with AI.",
-        "projects": [
-          "scampilot",
-          "promptsafe",
-          "kickapoo"
-        ]
-      },
-      {
-        "label": "Studying systems",
-        "title": "Asking what an evaluation actually shows.",
-        "text": "Experiments, model fitting and model comparison, with a habit of checking whether a good score means the model captures how people, or animals, really behave.",
-        "projects": [
-          "audit",
-          "thesis"
-        ]
-      }
-    ]
-  },
   "work": {
     "id": "work",
     "heading": "Selected work",

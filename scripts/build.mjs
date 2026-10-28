@@ -70,21 +70,6 @@ ${linkRow(p.links)}
 </section>`;
 }
 
-function renderApproach(a, work) {
-  const name = Object.fromEntries(work.items.map((w) => [w.slug, w.name]));
-  const items = a.items.map((it, i) => `<div class="approach-item">
-<p class="label">${String(i + 1).padStart(2, '0')} · ${inline(it.label)}</p>
-<h3>${inline(it.title)}</h3>
-<p>${inline(it.text)}</p>
-<p class="approach-projects">${(it.projects || []).map((s) => `<a href="#work-${esc(s)}">${inline(name[s] || s)}</a>`).join('<span aria-hidden="true"> · </span>')}</p>
-</div>`).join('\n');
-  return `<section id="${esc(a.id)}" class="sec sec--approach" aria-label="Approach">
-<div class="wrap approach">
-${items}
-</div>
-</section>`;
-}
-
 function renderWork(work, me) {
   const cards = work.items.map((w) => {
     const page = w.detail ? `work/${w.slug}/` : null;
@@ -293,7 +278,6 @@ export function build({ strict = false, quiet = false } = {}) {
     body: [
       renderHero(data.hero, profile),
       renderResearch(data.research),
-      renderApproach(data.approach, data.work),
       renderWork(data.work, profile.me),
       ...(data.experience ? [renderExperience(data.experience)] : []),
       renderPublications(data.publications, profile.me),
