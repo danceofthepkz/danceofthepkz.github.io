@@ -134,14 +134,12 @@ function renderExperience(x) {
 <h2 id="${esc(x.id)}-h">${inline(x.heading)}</h2>
 <ol class="exp">
 ${x.items.map((e) => `<li>
+${e.logo ? `<img class="exp-logo" src="${esc(e.logo)}" alt="" width="32" height="32" loading="lazy">` : '<span class="exp-logo exp-logo--none" aria-hidden="true"></span>'}
 <p class="exp-dates label">${inline(e.dates || '')}</p>
 <div class="exp-main">
-${e.logo ? `<img class="exp-logo" src="${esc(e.logo)}" alt="" width="40" height="40" loading="lazy">` : '<span class="exp-logo exp-logo--none" aria-hidden="true"></span>'}
-<div>
 <p class="exp-role">${inline(e.role)}${e.org ? `, ${e.href ? `<a href="${esc(e.href)}">${inline(e.org)}</a>` : inline(e.org)}` : ''}</p>
 ${e.location ? `<p class="exp-loc">${inline(e.location)}</p>` : ''}
 ${e.text ? `<p class="exp-text">${inline(e.text)}</p>` : ''}
-</div>
 </div>
 </li>`).join('\n')}
 </ol>
