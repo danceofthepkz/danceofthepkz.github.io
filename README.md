@@ -39,6 +39,10 @@ Add an object to `work.items` (order on the page = order in the file):
 - `detail` (optional): adds a case-study page at `/work/<slug>/` with `lead`, `sections` (each `heading` + `paragraphs`, `figure: true` to place the image there), an optional `table`, and `figureCaption`. See the `thesis` entry.
 - To list it under Building/Studying at the top, add its `slug` to `approach.items[].projects`.
 
+### Add a position (Experience)
+
+Add `{ "role", "org", "href", "dates", "location", "text", "logo" }` to `experience.items` (newest first). `logo` is a square image in `src/assets/orgs/` (96×96 PNG on white works best); leave it out for a neutral placeholder.
+
 ### Add a paper (Publications)
 
 Add `{ "authors": [...], "title": "...", "venue": "...", "links": [...] }` to `publications.items`, or to `publications.working` for work in progress.

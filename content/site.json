@@ -335,7 +335,8 @@
         "href": "https://hcii.cmu.edu/",
         "dates": "Sep 2026 – Present",
         "location": "",
-        "text": "End-user privacy deliberation with Prof. Sauvik Das and Prof. Sukrit Venkatagiri."
+        "text": "End-user privacy deliberation with Prof. Sauvik Das and Prof. Sukrit Venkatagiri.",
+        "logo": "assets/orgs/cmu.png"
       },
       {
         "role": "Summer Research Intern",
@@ -343,7 +344,8 @@
         "href": "https://luminousvc.com/",
         "dates": "May – Aug 2026",
         "location": "Shanghai, China · formerly Lightspeed China Partners",
-        "text": "Industry research on AI applications and deep tech."
+        "text": "Industry research on AI applications and deep tech.",
+        "logo": "assets/orgs/luminous.png"
       },
       {
         "role": "Research Assistant",
@@ -351,7 +353,8 @@
         "href": "",
         "dates": "Jan 2026 – Present",
         "location": "",
-        "text": "Computational modeling of learning with [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn): reinforcement-learning models of auditory categorization, using data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn."
+        "text": "Computational modeling of learning with [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn): reinforcement-learning models of auditory categorization, using data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn.",
+        "logo": "assets/orgs/swarthmore.png"
       },
       {
         "role": "AI Engineering Intern",
@@ -359,7 +362,8 @@
         "href": "https://memories.ai/",
         "dates": "Sep 2025 – Jan 2026",
         "location": "Remote",
-        "text": "AI engineering and full-stack development."
+        "text": "AI engineering and full-stack development.",
+        "logo": "assets/orgs/memories.png"
       },
       {
         "role": "Research Assistant",
@@ -367,7 +371,8 @@
         "href": "",
         "dates": "Jan 2025 – Present",
         "location": "",
-        "text": "Human-centered AI safety with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/), including ScamPilot (CHI 2026). Broad/Baltimore Research Fellowship."
+        "text": "Human-centered AI safety with [Prof. Sukrit Venkatagiri](https://www.sukritv.com/), including ScamPilot (CHI 2026). Broad/Baltimore Research Fellowship.",
+        "logo": "assets/orgs/swarthmore.png"
       },
       {
         "role": "Summer Research Intern",
@@ -375,7 +380,8 @@
         "href": "https://evictionlab.org/",
         "dates": "May – Aug 2024",
         "location": "Robbins Chang Big Data & Social Change Fellow",
-        "text": "Estimated what eviction costs the public with Director Carl Gershenson, and built a React calculator in which every assumption is cited and adjustable."
+        "text": "Estimated what eviction costs the public with Director Carl Gershenson, and built a React calculator in which every assumption is cited and adjustable.",
+        "logo": "assets/orgs/eviction.png"
       },
       {
         "role": "Research Intern",
@@ -383,7 +389,8 @@
         "href": "",
         "dates": "Jun – Aug 2023",
         "location": "Shanghai, China",
-        "text": ""
+        "text": "",
+        "logo": "assets/orgs/nyush.png"
       }
     ]
   },

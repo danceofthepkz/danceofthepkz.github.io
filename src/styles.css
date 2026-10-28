@@ -115,6 +115,9 @@ main:focus{outline:none}
 .exp li{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);gap:.25rem 1.5rem;padding:1.1rem 0;border-top:1px solid var(--paper-line)}
 .exp li:first-child{border-top:0;padding-top:0}
 .exp-dates{padding-top:.2rem}
+.exp-main{display:flex;align-items:flex-start;gap:1rem}
+.exp-logo{flex:none;width:2.5rem;height:2.5rem;border-radius:6px;background:#fff;box-shadow:0 0 0 1px var(--paper-line);object-fit:contain}
+.exp-logo--none{background:var(--chip)}
 .exp-role{margin:0;font-size:1.05rem;font-weight:600;line-height:1.4;color:var(--ink)}
 .exp-loc{margin:.15rem 0 0;font-size:.95rem;color:var(--meta)}
 .exp-text{margin:.35rem 0 0;font-size:1rem;line-height:1.6;color:var(--ink2)}
