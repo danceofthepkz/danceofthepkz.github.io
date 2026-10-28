@@ -124,10 +124,9 @@
           "Sauvik Das",
           "Sukrit Venkatagiri"
         ],
-        "image": "assets/pubs/promptsafe-thumb.png",
-        "imageAlt": "PromptSafe panel: agents for privacy, security, misuse and other viewpoints debate a feature, with a moderator and a \"Clash\" round in progress.",
-        "links": [],
-        "imageFit": "contain"
+        "image": "assets/pubs/promptsafe-flow.png",
+        "imageAlt": "PromptSafe interface: a data-flow map of an app idea (where ID photos and posts come from and go), surrounded by Privacy, Security, Misuse and User advocate agents; the Misuse agent asks whether the team still needs to see ID photos after verification.",
+        "links": []
       },
       {
         "slug": "audit",
