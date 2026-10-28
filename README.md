@@ -14,29 +14,36 @@ Text fields support a little inline formatting:
 | `**bold**` / `*italic*` | bold / italic |
 | `[TODO: something]` | a dashed "TODO" marker on the page, listed by the build |
 
-### Add a paper
+### Add a project (Selected work)
 
-Add an object to `publications.items` (order on the page = order in the file):
+Add an object to `work.items` (order on the page = order in the file):
 
 ```json
 {
-  "title": "Paper title",
-  "authors": ["Coauthor One", "Kangze Peng", "Coauthor Two"],
-  "venue": "CHI 2027, Yokohama",
-  "description": "One sentence on what it shows.",
-  "image": null,
-  "imageAlt": "",
-  "links": [
-    { "label": "PDF", "href": "https://…" },
-    { "label": "DOI", "href": "https://doi.org/…" }
-  ]
+  "slug": "my-project",
+  "name": "Short name",
+  "title": "Full paper or project title",
+  "kinds": ["Build", "Study"],
+  "tags": "HCI · Online safety",
+  "meta": "CHI 2027",
+  "claim": "One sentence on what it is or shows.",
+  "authors": ["Coauthor One", "Kangze Peng"],
+  "image": "assets/pubs/my-figure.png",
+  "imageAlt": "What the figure shows",
+  "links": [{ "label": "DOI", "href": "https://doi.org/…" }]
 }
 ```
 
+- `kinds`: `Build` (a system you made) and/or `Study` (experiments, evaluation, modeling).
+- `imageFit` (optional): `"contain"` shows the whole image on a white mat instead of cropping it.
+- `detail` (optional): adds a case-study page at `/work/<slug>/` with `lead`, `sections` (each `heading` + `paragraphs`, `figure: true` to place the image there), an optional `table`, and `figureCaption`. See the `thesis` entry.
+- To list it under Building/Studying at the top, add its `slug` to `approach.items[].projects`.
+
+### Add a paper (Publications)
+
+Add `{ "authors": [...], "title": "...", "venue": "...", "links": [...] }` to `publications.items`, or to `publications.working` for work in progress.
+
 - Your name is bolded automatically when it matches `profile.me` exactly.
-- `image`: put a file in `src/assets/` and write `"assets/my-figure.png"` (with an `imageAlt`), or leave `null` for the checkered placeholder.
-- `imageFit` (optional): `"contain"` shows the whole image on a white mat (for portrait or square figures) instead of cropping it to the 16:9 frame.
-- A link whose `href` is a `[TODO: …]` renders as greyed text with a TODO marker instead of a dead link.
 
 ### Extra pages
 

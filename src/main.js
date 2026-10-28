@@ -2,6 +2,13 @@ import { Site } from './scene.js';
 
 const q = new URLSearchParams(location.search);
 
+// The scene canvas lives in the home-page hero. Its drawing buffer is sized from the window,
+// so keep its CSS height equal to the window height (registered before the scene's own resize handler).
+const sceneCanvas = document.querySelector('canvas[data-scene]');
+const fitScene = () => { if (sceneCanvas) sceneCanvas.style.height = window.innerHeight + 'px'; };
+fitScene();
+window.addEventListener('resize', fitScene);
+
 const site = new Site({
   companion: ['light', 'bird', 'traveler'].indexOf(q.get('companion')) >= 0 ? q.get('companion') : 'light',
   theme: ['day', 'night'].indexOf(q.get('theme')) >= 0 ? q.get('theme') : 'auto'

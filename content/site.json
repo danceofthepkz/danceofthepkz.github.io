@@ -2,11 +2,15 @@
   "site": {
     "url": "https://danceofthepkz.github.io/",
     "title": "Kangze (Steven) Peng",
-    "description": "Kangze (Steven) Peng studies decision-making under uncertainty in brains, people, and language models. Computer Science & Cognitive Science at Swarthmore College.",
+    "description": "Kangze (Steven) Peng builds and studies the systems that shape how people decide: HCI and computational social science at Swarthmore College.",
     "lastUpdated": "October 2026",
     "footerNote": "This site does not track you."
   },
   "nav": [
+    {
+      "label": "Work",
+      "href": "#work"
+    },
     {
       "label": "Research",
       "href": "#research"
@@ -25,7 +29,6 @@
     "me": "Kangze Peng",
     "altName": "彭康泽",
     "affiliation": "Computer Science & Cognitive Science, Swarthmore College",
-    "tagline": "I study how decisions get made under uncertainty: in brains, in people, and in the language models we now use to simulate them.",
     "photo": "assets/photo.jpg",
     "photoAlt": "Kangze Peng smiling on a grassy hillside above a lake",
     "links": [
@@ -44,6 +47,261 @@
       {
         "label": "LinkedIn",
         "href": "https://www.linkedin.com/in/kangze-peng"
+      }
+    ]
+  },
+  "hero": {
+    "kicker": "HCI · Computational social science · Swarthmore College",
+    "statement": "I build and interrogate the systems that shape how people decide."
+  },
+  "approach": {
+    "id": "approach",
+    "items": [
+      {
+        "label": "Building systems",
+        "title": "Turning research ideas into systems people use.",
+        "text": "Interactive tools that put people in front of a hard decision, from rehearsing a scam conversation to weighing the risks of an app they are building with AI.",
+        "projects": [
+          "scampilot",
+          "promptsafe",
+          "kickapoo"
+        ]
+      },
+      {
+        "label": "Studying systems",
+        "title": "Asking what an evaluation actually shows.",
+        "text": "Experiments, model fitting and model comparison, with a habit of checking whether a good score means the model captures how people, or animals, really behave.",
+        "projects": [
+          "audit",
+          "thesis"
+        ]
+      }
+    ]
+  },
+  "work": {
+    "id": "work",
+    "heading": "Selected work",
+    "aside": "2024 — 2026",
+    "items": [
+      {
+        "slug": "scampilot",
+        "name": "ScamPilot",
+        "title": "ScamPilot: Simulating Conversations with LLMs to Protect Against Online Scams",
+        "kinds": [
+          "Build",
+          "Study"
+        ],
+        "tags": "HCI · Online safety",
+        "meta": "CHI 2026",
+        "claim": "Simulated scam conversations that teach people to recognize and respond to online scams.",
+        "authors": [
+          "Owen M. Hoffman",
+          "Kangze Peng",
+          "Sajid Kamal",
+          "Zehua You",
+          "Sukrit Venkatagiri"
+        ],
+        "image": "assets/pubs/scampilot-thumb.jpg",
+        "imageAlt": "ScamPilot interface: a simulated scam chat between Mark and his grandmother Jane, a quiz question about the scammer's tactic, and a box for writing advice to Jane.",
+        "links": [
+          {
+            "label": "DOI",
+            "href": "https://doi.org/10.1145/3772318.3791313"
+          }
+        ]
+      },
+      {
+        "slug": "promptsafe",
+        "name": "PromptSafe",
+        "title": "PromptSafe: multi-agent deliberation for end-user developers",
+        "kinds": [
+          "Build"
+        ],
+        "tags": "Human–AI interaction · Security and privacy",
+        "meta": "In progress",
+        "claim": "Multi-agent deliberation that helps end-user developers weigh privacy, security, and misuse trade-offs.",
+        "authors": [
+          "Kangze Peng",
+          "Yiming Wu",
+          "Sauvik Das",
+          "Sukrit Venkatagiri"
+        ],
+        "image": "assets/pubs/promptsafe-thumb.png",
+        "imageAlt": "PromptSafe panel: agents for privacy, security, misuse and other viewpoints debate a feature, with a moderator and a \"Clash\" round in progress.",
+        "links": [],
+        "imageFit": "contain"
+      },
+      {
+        "slug": "audit",
+        "name": "Simulation audit",
+        "title": "Social simulation audit",
+        "kinds": [
+          "Study"
+        ],
+        "tags": "LLM evaluation · Computational social science",
+        "meta": "In progress",
+        "claim": "An information-theoretic audit of where LLM social simulators diverge from real populations.",
+        "authors": [
+          "Kangze Peng"
+        ],
+        "image": "assets/pubs/audit-thumb.png",
+        "imageAlt": "Illustration of two people talking on a campus path, one holding a phone.",
+        "links": [
+          {
+            "label": "Project page",
+            "href": "https://danceofthepkz.github.io/intervention-response-audit/"
+          }
+        ]
+      },
+      {
+        "slug": "thesis",
+        "name": "Behavioral modeling",
+        "title": "Reinforcement-learning models of auditory categorization learning",
+        "kinds": [
+          "Study",
+          "Build"
+        ],
+        "tags": "Computational modeling · Senior thesis",
+        "meta": "2026 — 2027",
+        "claim": "Ten reinforcement-learning models that separate what a learner knows from its pull toward repeating recent choices.",
+        "authors": [
+          "Kangze Peng",
+          "Joshua Goldwyn"
+        ],
+        "image": "assets/pubs/thesis-models-thumb.jpg",
+        "imageAlt": "Real versus simulated learning curves for one mouse (GS027) under ten reinforcement-learning models, with each model's BIC difference from the best fit.",
+        "links": [
+          {
+            "label": "Interactive article",
+            "href": "https://danceofthepkz.github.io/behavioral-modeling-thesis/auditory_categorization_learning/"
+          }
+        ],
+        "detail": {
+          "lead": "Mice learning to sort sounds into two categories often drift toward one response side for long stretches of training. This project asks what drives that drift, and builds the models so that each comparison answers one question.",
+          "sections": [
+            {
+              "heading": "Question",
+              "paragraphs": [
+                "Is a learner's side bias something it learns from reward, or a reward-independent tendency to repeat what it has been doing? Choices alone can be fit by several of these stories, so the comparison has to be designed so the stories make different predictions."
+              ]
+            },
+            {
+              "heading": "Approach",
+              "paragraphs": [
+                "A family of ten reinforcement-learning models assembled from interchangeable parts. Every model adds a few terms into a logit, turns it into the probability of choosing High, and updates what it tracks after the outcome. The models differ only in which terms enter and what gets updated.",
+                "**Baselines.** No learning (M1) and a noisy win-stay/lose-shift rule (M2).",
+                "**Two learning families.** The S family learns a value for every stimulus–action pair. The A family, the model of Collina et al. (2025) implemented as in their code, learns only how reliable each action is, with the stimulus mapping built in.",
+                "**Two add-ons.** R lets the learner drift toward whichever side has paid off recently. C is a choice kernel that captures reward-independent repetition, the piece the original model did not test."
+              ]
+            },
+            {
+              "heading": "Evaluation",
+              "paragraphs": [
+                "Each model is fit to each mouse by maximum likelihood with several random starts, and learned values carry over from one day to the next. Correction trials update the model but are left out of the likelihood; the analysis is also run with them included.",
+                "Models are compared with BIC and group-level Bayesian model selection (Stephan et al., 2009; Rigoux et al., 2014). Following Wilson and Collins (2019), parameter and model recovery are checked on simulated data before any real-data result is trusted, and a result only counts if it holds in both the S and the A family."
+              ]
+            },
+            {
+              "heading": "Preliminary results",
+              "figure": true,
+              "paragraphs": [
+                "For one mouse (GS027), the model with the lowest BIC, A+C, does not reproduce the observed learning curves, while S0, A0 and A+R follow them more closely. A good score and a good account of learning are not the same thing; the group-level analysis is in progress."
+              ]
+            },
+            {
+              "heading": "My contribution",
+              "paragraphs": [
+                "Designed the model family, implemented and fit all ten models, ran the model comparison and recovery analyses, and built the [interactive article](https://danceofthepkz.github.io/behavioral-modeling-thesis/auditory_categorization_learning/). Advised by [Prof. Joshua Goldwyn](https://www.swarthmore.edu/joshua-goldwyn); data from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn."
+              ]
+            }
+          ],
+          "table": {
+            "caption": "The ten models and their free parameters.",
+            "head": [
+              "Model",
+              "Adds",
+              "Free parameters"
+            ],
+            "rows": [
+              [
+                "M1",
+                "Constant bias",
+                "1"
+              ],
+              [
+                "M2",
+                "Noisy win-stay/lose-shift",
+                "1"
+              ],
+              [
+                "S0",
+                "Stimulus–action values",
+                "4"
+              ],
+              [
+                "S+R",
+                "+ reward-driven side values",
+                "6"
+              ],
+              [
+                "S+C",
+                "+ choice kernel",
+                "6"
+              ],
+              [
+                "S+R+C",
+                "+ both",
+                "8"
+              ],
+              [
+                "A0",
+                "Action reliability (Collina et al.)",
+                "3"
+              ],
+              [
+                "A+R",
+                "+ choice-history update",
+                "4"
+              ],
+              [
+                "A+C",
+                "+ choice kernel",
+                "5"
+              ],
+              [
+                "A+R+C",
+                "+ both",
+                "6"
+              ]
+            ]
+          },
+          "figureCaption": "Real versus simulated learning curves for mouse GS027 under each model, with ΔBIC relative to the best-scoring model."
+        }
+      },
+      {
+        "slug": "kickapoo",
+        "name": "Kickapoo–English MT",
+        "title": "Kickapoo to English machine translation",
+        "kinds": [
+          "Build"
+        ],
+        "tags": "NLP · Low-resource languages",
+        "meta": "Open source · Apertium",
+        "claim": "A rule-based translation pair for Kickapoo, a low-resource Algonquian language.",
+        "authors": [
+          "Kangze Peng",
+          "Yike Li",
+          "Jonathan Washington"
+        ],
+        "image": "assets/pubs/kickapoo-thumb.png",
+        "imageAlt": "Apertium logo: letters from different scripts spilling out of a cardboard box.",
+        "links": [
+          {
+            "label": "Code",
+            "href": "https://github.com/apertium/apertium-kic"
+          }
+        ],
+        "imageFit": "contain"
       }
     ]
   },
@@ -71,10 +329,9 @@
   },
   "publications": {
     "id": "publications",
-    "heading": "Publications & projects",
+    "heading": "Publications",
     "items": [
       {
-        "title": "ScamPilot: Simulating Conversations with LLMs to Protect Against Online Scams",
         "authors": [
           "Owen M. Hoffman",
           "Kangze Peng",
@@ -82,83 +339,55 @@
           "Zehua You",
           "Sukrit Venkatagiri"
         ],
-        "venue": "CHI 2026, Barcelona",
-        "description": "Simulated scam conversations that teach people to recognize and respond to online scams.",
-        "image": "assets/pubs/scampilot-thumb.jpg",
+        "title": "ScamPilot: Simulating Conversations with LLMs to Protect Against Online Scams",
+        "venue": "CHI Conference on Human Factors in Computing Systems (CHI 2026), Barcelona",
         "links": [
           {
             "label": "DOI",
             "href": "https://doi.org/10.1145/3772318.3791313"
           }
-        ],
-        "imageAlt": "ScamPilot interface: a simulated scam chat between Mark and his grandmother Jane, a quiz question about the scammer's tactic, and a box for writing advice to Jane."
+        ]
       },
       {
-        "title": "Social simulation audit",
-        "authors": [
-          "Kangze Peng"
-        ],
-        "venue": "In progress",
-        "description": "An information-theoretic audit of where LLM social simulators diverge from real populations.",
-        "image": "assets/pubs/audit-thumb.png",
-        "links": [
-          {
-            "label": "Project page",
-            "href": "https://danceofthepkz.github.io/intervention-response-audit/"
-          }
-        ],
-        "imageAlt": "Illustration of two people talking on a campus path, one holding a phone."
-      },
-      {
-        "title": "Reinforcement-learning models of auditory categorization learning",
         "authors": [
           "Kangze Peng",
           "Joshua Goldwyn"
         ],
-        "venue": "Senior thesis, Swarthmore College, 2027",
-        "description": "Reinforcement-learning models of auditory categorization, fit to mouse behavior from the [Geffen Lab](https://hosting.med.upenn.edu/hearing/) at Penn.",
-        "image": "assets/pubs/thesis-models-thumb.jpg",
+        "title": "Reinforcement-learning models of auditory categorization learning",
+        "venue": "Senior thesis, Swarthmore College, in progress",
         "links": [
           {
             "label": "Interactive article",
             "href": "https://danceofthepkz.github.io/behavioral-modeling-thesis/auditory_categorization_learning/"
           }
+        ]
+      }
+    ],
+    "workingHeading": "In progress",
+    "working": [
+      {
+        "authors": [
+          "Kangze Peng"
         ],
-        "imageAlt": "Real versus simulated learning curves for one mouse (GS027) under ten reinforcement-learning models, with each model's BIC difference from the best fit."
+        "title": "Social simulation audit",
+        "venue": "In preparation",
+        "links": [
+          {
+            "label": "Project page",
+            "href": "https://danceofthepkz.github.io/intervention-response-audit/"
+          }
+        ]
       },
       {
-        "title": "PromptSafe: multi-agent deliberation for end-user developers",
         "authors": [
           "Kangze Peng",
           "Yiming Wu",
           "Sauvik Das",
           "Sukrit Venkatagiri"
         ],
-        "venue": "In progress",
-        "description": "Multi-agent deliberation that helps end-user developers weigh privacy, security, and misuse trade-offs.",
-        "image": "assets/pubs/promptsafe-thumb.png",
-        "links": [],
-        "imageFit": "contain",
-        "imageAlt": "PromptSafe panel: agents for privacy, security, misuse and other viewpoints debate a feature, with a moderator and a \"Clash\" round in progress."
-      },
-      {
-        "title": "Kickapoo to English machine translation",
-        "authors": [
-          "Kangze Peng",
-          "Yike Li",
-          "Jonathan Washington"
-        ],
-        "venue": "Open source, Apertium",
-        "description": "A rule-based translation pair for Kickapoo, a low-resource Algonquian language.",
-        "image": "assets/pubs/kickapoo-thumb.png",
-        "links": [
-          {
-            "label": "Code",
-            "href": "https://github.com/apertium/apertium-kic"
-          }
-        ],
-        "imageFit": "contain",
-        "imageAlt": "Apertium logo: letters from different scripts spilling out of a cardboard box."
+        "title": "PromptSafe: multi-agent deliberation for end-user developers",
+        "venue": "In preparation",
+        "links": []
       }
     ]
   },

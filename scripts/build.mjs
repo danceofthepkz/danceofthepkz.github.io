@@ -1,4 +1,4 @@
-// Renders content/site.json into dist/index.html and copies static files.
+// Renders content/site.json into dist/ (home page, case-study pages, extra pages) and copies static files.
 // Zero dependencies: `node scripts/build.mjs` (add --strict to fail on TODOs).
 import { readFileSync, writeFileSync, mkdirSync, rmSync, cpSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -48,17 +48,69 @@ function thumb(kind, src, alt, placeholder, fit) {
 }
 
 // ---------- sections ----------
-function renderProfile(p) {
-  return `<header class="card" data-anchor="">
+const paras = (list) => (list || []).map((t) => `<p>${inline(t)}</p>`).join('\n');
+const authorList = (authors, me) => (authors || []).map((a) => (a === me ? `<b>${inline(a)}</b>` : inline(a))).join(', ');
+const kindTags = (kinds) => (kinds || []).map((k) => `<span class="kind kind--${esc(k.toLowerCase())}">${inline(k)}</span>`).join('');
+
+// Home hero: the pixel scene lives here only; the rest of the site is plain paper.
+function renderHero(hero, p) {
+  return `<section class="hero" aria-labelledby="hero-name">
+<canvas class="scene" data-scene="" aria-hidden="true"></canvas>
+<div class="wrap hero-inner">
+<div class="hero-copy" data-paper="" data-anchor="">
+<p class="kicker">${inline(hero.kicker)}</p>
+<p class="statement">${inline(hero.statement)}</p>
+<div class="id">
 ${thumb('photo', p.photo, p.photoAlt, 'photo')}
-<div class="card-main">
-<h1 class="name">${inline(p.name)}</h1>
-${p.altName ? `<p class="name-alt" lang="zh-Hans">${inline(p.altName)}</p>` : ''}
+<div>
+<h1 class="name" id="hero-name">${inline(p.name)}${p.altName ? ` <span class="name-alt" lang="zh-Hans">${inline(p.altName)}</span>` : ''}</h1>
 <p class="affiliation">${inline(p.affiliation)}</p>
-<p class="tagline">${inline(p.tagline)}</p>
+</div>
+</div>
 ${linkRow(p.links)}
 </div>
-</header>`;
+</div>
+</section>`;
+}
+
+function renderApproach(a, work) {
+  const name = Object.fromEntries(work.items.map((w) => [w.slug, w.name]));
+  const items = a.items.map((it, i) => `<div class="approach-item">
+<p class="label">${String(i + 1).padStart(2, '0')} · ${inline(it.label)}</p>
+<h3>${inline(it.title)}</h3>
+<p>${inline(it.text)}</p>
+<p class="approach-projects">${(it.projects || []).map((s) => `<a href="#work-${esc(s)}">${inline(name[s] || s)}</a>`).join('<span aria-hidden="true"> · </span>')}</p>
+</div>`).join('\n');
+  return `<section id="${esc(a.id)}" class="sec sec--approach" aria-label="Approach">
+<div class="wrap approach">
+${items}
+</div>
+</section>`;
+}
+
+function renderWork(work, me) {
+  const cards = work.items.map((w) => {
+    const page = w.detail ? `work/${w.slug}/` : null;
+    return `<article class="work-card" id="work-${esc(w.slug)}">
+${thumb('card', w.image, w.imageAlt, 'figure', w.imageFit)}
+<div class="work-text">
+<p class="work-meta"><span>${inline(w.meta)}</span>${kindTags(w.kinds)}</p>
+<h3 class="work-name">${page ? `<a href="${page}">${inline(w.name)}</a>` : inline(w.name)}</h3>
+<p class="work-tags">${inline(w.tags)}</p>
+<p class="work-claim">${inline(w.claim)}</p>
+<p class="work-authors">${authorList(w.authors, me)}</p>
+${linkRow([...(page ? [{ label: 'Case study →', href: page }] : []), ...(w.links || [])])}
+</div>
+</article>`;
+  }).join('\n');
+  return `<section id="${esc(work.id)}" class="sec" aria-labelledby="${esc(work.id)}-h">
+<div class="wrap">
+<div class="sec-head"><h2 id="${esc(work.id)}-h">${inline(work.heading)}</h2>${work.aside ? `<p class="label">${inline(work.aside)}</p>` : ''}</div>
+<div class="work-grid">
+${cards}
+</div>
+</div>
+</section>`;
 }
 
 function renderResearch(r) {
@@ -66,40 +118,87 @@ function renderResearch(r) {
 <h3>${inline(d.title)}</h3>
 <p>${inline(d.text)}</p>
 </div>`).join('\n');
-  return `<section id="${esc(r.id)}" class="section" data-anchor="" aria-labelledby="${esc(r.id)}-h">
-<h2 class="section-title" id="${esc(r.id)}-h">${inline(r.heading)}</h2>
+  return `<section id="${esc(r.id)}" class="sec" aria-labelledby="${esc(r.id)}-h">
+<div class="wrap split">
+<h2 id="${esc(r.id)}-h">${inline(r.heading)}</h2>
+<div>
 <div class="prose">
-${r.paragraphs.map((t) => `<p>${inline(t)}</p>`).join('\n')}
+${paras(r.paragraphs)}
 </div>
 ${dirs ? `<div class="directions">\n${dirs}\n</div>` : ''}
+</div>
+</div>
 </section>`;
 }
 
+function renderCitations(items, me) {
+  return `<ol class="cites">
+${items.map((c) => `<li>
+<p class="cite-title">${inline(c.title)}</p>
+<p class="cite-authors">${authorList(c.authors, me)}</p>
+<p class="cite-venue">${inline(c.venue)}</p>
+${linkRow(c.links)}
+</li>`).join('\n')}
+</ol>`;
+}
+
 function renderPublications(pubs, me) {
-  const author = (a) => (a === me ? `<b>${inline(a)}</b>` : inline(a));
-  const items = pubs.items.map((it) => `<li class="pub">
-${thumb('fig', it.image, it.imageAlt, 'fig.', it.imageFit)}
-<div class="pub-body">
-<h3 class="pub-title">${inline(it.title)}</h3>
-<p class="pub-authors">${(it.authors || []).map(author).join(', ')}</p>
-${it.venue ? `<p class="pub-venue">${inline(it.venue)}</p>` : ''}
-${it.description ? `<p class="pub-desc">${inline(it.description)}</p>` : ''}
-${linkRow(it.links)}
+  return `<section id="${esc(pubs.id)}" class="sec" aria-labelledby="${esc(pubs.id)}-h">
+<div class="wrap split">
+<h2 id="${esc(pubs.id)}-h">${inline(pubs.heading)}</h2>
+<div>
+${renderCitations(pubs.items, me)}
+${pubs.working && pubs.working.length ? `<p class="label cites-sub">${inline(pubs.workingHeading || 'In progress')}</p>\n${renderCitations(pubs.working, me)}` : ''}
 </div>
-</li>`).join('\n');
-  return `<section id="${esc(pubs.id)}" class="section" data-anchor="" aria-labelledby="${esc(pubs.id)}-h">
-<h2 class="section-title" id="${esc(pubs.id)}-h">${inline(pubs.heading)}</h2>
-<ul class="pubs">
-${items}
-</ul>
+</div>
 </section>`;
 }
 
 function renderContact(c) {
-  return `<section id="${esc(c.id)}" class="section contact" data-anchor="" aria-labelledby="${esc(c.id)}-h">
-<h2 class="section-title" id="${esc(c.id)}-h">${inline(c.heading)}</h2>
+  return `<section id="${esc(c.id)}" class="sec" aria-labelledby="${esc(c.id)}-h">
+<div class="wrap split">
+<h2 id="${esc(c.id)}-h">${inline(c.heading)}</h2>
+<div class="prose">
 ${c.lines.map((l) => `<p${l.id ? ` id="${esc(l.id)}"` : ''}>${inline(l.text)}</p>`).join('\n')}
+</div>
+</div>
 </section>`;
+}
+
+// Case-study page for a work item with a `detail` block. `base` prefixes relative asset paths.
+function renderCase(w, me, base) {
+  const d = w.detail;
+  const img = (src) => (src && !/^([a-z]+:|\/)/i.test(src) ? base + src : src);
+  const fig = w.image ? `<figure class="case-fig">
+<img src="${esc(img(w.image))}" alt="${esc(w.imageAlt || '')}">
+${d.figureCaption ? `<figcaption>${inline(d.figureCaption)}</figcaption>` : ''}
+</figure>` : '';
+  const table = d.table ? `<div class="case-table"><table>
+<caption>${inline(d.table.caption)}</caption>
+<thead><tr>${d.table.head.map((h) => `<th scope="col">${inline(h)}</th>`).join('')}</tr></thead>
+<tbody>${d.table.rows.map((r) => `<tr>${r.map((c, i) => (i === 0 ? `<th scope="row">${inline(c)}</th>` : `<td>${inline(c)}</td>`)).join('')}</tr>`).join('')}</tbody>
+</table></div>` : '';
+  const secs = d.sections.map((sec, i) => `<section class="case-sec">
+<h2>${inline(sec.heading)}</h2>
+<div class="prose">
+${paras(sec.paragraphs)}
+${sec.heading === 'Approach' ? table : ''}
+${sec.figure ? fig : ''}
+</div>
+</section>`).join('\n');
+  return `<article class="case">
+<header class="wrap case-head">
+<p class="label"><a href="${base}#work">← All work</a></p>
+<p class="work-meta"><span>${inline(w.meta)}</span>${kindTags(w.kinds)}</p>
+<h1 class="case-title">${inline(w.title)}</h1>
+<p class="case-lead">${inline(d.lead || w.claim)}</p>
+<p class="work-authors">${authorList(w.authors, me)}</p>
+${linkRow(w.links)}
+</header>
+<div class="wrap case-body">
+${secs}
+</div>
+</article>`;
 }
 
 // ---------- TODO report ----------
@@ -148,11 +247,14 @@ export function build({ strict = false, quiet = false } = {}) {
 </div>
 </details>`;
 
-  function renderPage({ base = '', path = '', title = site.title, body, extra = '' }) {
+  function renderPage({ base = '', path = '', title = site.title, body, extra = '', mainClass = 'page-plain' }) {
     // Relative links in shared parts (nav) must point back up from subpages.
     const href = (h) => (base && !/^([a-z]+:|\/)/i.test(h) ? base + h : h);
     const slots = {
       base,
+      home: base || './',
+      brand: esc(profile.me),
+      mainClass,
       title: esc(title),
       siteTitle: esc(site.title),
       description: esc(site.description),
@@ -173,8 +275,11 @@ export function build({ strict = false, quiet = false } = {}) {
   }
 
   const home = renderPage({
+    mainClass: 'page-home',
     body: [
-      renderProfile(profile),
+      renderHero(data.hero, profile),
+      renderApproach(data.approach, data.work),
+      renderWork(data.work, profile.me),
       renderResearch(data.research),
       renderPublications(data.publications, profile.me),
       renderContact(data.contact)
@@ -188,14 +293,22 @@ export function build({ strict = false, quiet = false } = {}) {
       base: '../',
       path: pg.path + '/',
       title: `${pg.heading} · ${site.title}`,
-      body: `<section id="${esc(pg.path)}" class="section page-solo" data-anchor="" aria-labelledby="${esc(pg.path)}-h">
-<h2 class="section-title" id="${esc(pg.path)}-h">${inline(pg.heading)}</h2>
+      body: `<section class="sec sec--solo" aria-labelledby="${esc(pg.path)}-h">
+<div class="wrap split">
+<h1 class="solo-title" id="${esc(pg.path)}-h">${inline(pg.heading)}</h1>
 <div class="prose">
-${pg.paragraphs.map((t) => `<p>${inline(t)}</p>`).join('\n')}
+${paras(pg.paragraphs)}
+</div>
 </div>
 </section>`
     })
   }));
+  for (const w of data.work.items.filter((x) => x.detail)) {
+    pages.push({
+      dir: `work/${w.slug}`,
+      html: renderPage({ base: '../../', path: `work/${w.slug}/`, title: `${w.name} · ${site.title}`, body: renderCase(w, profile.me, '../../') })
+    });
+  }
 
   rmSync(OUT, { recursive: true, force: true });
   mkdirSync(OUT, { recursive: true });
